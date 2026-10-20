@@ -1,0 +1,4 @@
+target/
+dist/
+build-input/
+.claude/settings.local.json

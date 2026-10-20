@@ -1,0 +1,229 @@
+/* ---- Pomodoro: light earth tones (greige + sage) ---- */
+
+.root-stack {
+    -bg:          #ECEBE6;  /* lightest background */
+    -surface:     #D5CFC0;  /* cards / buttons      */
+    -border:      #B2ADA0;  /* borders / track      */
+    -text:        #3E3A33;  /* primary text         */
+    -text-soft:   #6E685D;  /* secondary text       */
+    -accent:      #7E9079;  /* sage accent          */
+    -accent-dark: #6B7D66;
+    -accent-soft: #A9B7A3;
+
+    -fx-font-family: "Segoe UI", "Inter", "Helvetica Neue", sans-serif;
+    -fx-background-color: -bg;
+    /* thin frame so the borderless window stands out from the desktop */
+    -fx-border-color: -border;
+    -fx-border-width: 1;
+}
+
+/* ---- dark mode (warm, earthy dark — not pure black) ---- */
+.root-stack.dark {
+    -bg:          #26241F;  /* deep warm charcoal   */
+    -surface:     #35322B;  /* cards / buttons      */
+    -border:      #4E483E;  /* borders / track      */
+    -text:        #ECEBE6;  /* primary text         */
+    -text-soft:   #B0A99C;  /* secondary text       */
+    -accent:      #8DA085;  /* sage (lifted for contrast) */
+    -accent-dark: #7C8E75;
+    -accent-soft: #44503F;
+}
+
+.main-pane {
+    -fx-background-color: -bg;
+    -fx-padding: 0;
+}
+
+/* ---- top bar ---- */
+.top-bar {
+    -fx-padding: 14 16 4 18;
+    -fx-spacing: 2;
+}
+.title {
+    -fx-text-fill: -text-soft;
+    -fx-font-size: 13px;
+    -fx-font-weight: normal;
+    -fx-opacity: 0.6;
+}
+/* all top-bar controls are crisp SVG icon buttons (emoji can't render) */
+.win-button {
+    -fx-background-color: transparent;
+    -fx-padding: 6 8;
+    -fx-background-radius: 7;
+    -fx-cursor: hand;
+}
+.win-button:hover {
+    -fx-background-color: -surface;
+}
+.win-button.active {
+    -fx-background-color: -surface;
+}
+.icon-glyph {
+    -fx-stroke: -text;
+    -fx-stroke-width: 1.4;
+    -fx-fill: transparent;
+    -fx-stroke-line-cap: round;
+    -fx-stroke-line-join: round;
+}
+.win-button:hover .icon-glyph {
+    -fx-stroke: -accent;
+}
+.win-button.active .icon-glyph {
+    -fx-stroke: -accent;
+}
+.break-phase .win-button.active .icon-glyph {
+    -fx-stroke: #9AA86F;
+}
+/* close button: red wash, white X on hover (must come after the rules above) */
+.win-close:hover {
+    -fx-background-color: #C0705F;
+}
+.win-close:hover .icon-glyph {
+    -fx-stroke: white;
+}
+.icon-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: -text-soft;
+    -fx-font-size: 18px;
+    -fx-padding: 2 6;
+    -fx-cursor: hand;
+    -fx-background-radius: 8;
+}
+.icon-button:hover {
+    -fx-background-color: -surface;
+}
+
+/* ---- timer dial ---- */
+.dial-wrapper {
+    -fx-padding: 8 0 8 0;
+}
+.track-arc {
+    -fx-stroke: -border;
+}
+.progress-arc {
+    -fx-stroke: -accent;
+}
+.phase-label {
+    -fx-text-fill: -text-soft;
+    -fx-font-size: 15px;
+    -fx-letter-spacing: 1px;
+}
+.time-label {
+    -fx-text-fill: -text;
+    -fx-font-size: 62px;
+    -fx-font-weight: bold;
+}
+
+/* break phase tints the ring & accents differently (still earthy) */
+.break-phase .progress-arc {
+    -fx-stroke: #9AA86F;
+}
+.break-phase .primary {
+    -fx-background-color: #9AA86F;
+}
+
+/* ---- bottom controls ---- */
+.bottom-bar {
+    -fx-padding: 8 18 24 18;
+}
+.button {
+    -fx-background-color: -surface;
+    -fx-text-fill: -text;
+    -fx-font-size: 13px;
+    -fx-background-radius: 10;
+    -fx-padding: 9 20;
+    -fx-cursor: hand;
+}
+.button:hover {
+    -fx-background-color: derive(-surface, -6%);
+}
+.primary {
+    -fx-background-color: -accent;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+.primary:hover {
+    -fx-background-color: -accent-dark;
+}
+.session-label {
+    -fx-text-fill: -text-soft;
+    -fx-font-size: 12px;
+    -fx-letter-spacing: 2px;
+}
+
+/* ---- compact mode: just the timer + an exit button ---- */
+.compact-view {
+    -fx-background-color: -bg;
+}
+.compact-time {
+    -fx-text-fill: -text;
+    -fx-font-weight: bold;
+}
+.break-phase .compact-time {
+    -fx-text-fill: #7C8E66;
+}
+.compact-exit {
+    -fx-opacity: 0.5;
+}
+.compact-exit:hover {
+    -fx-opacity: 1;
+}
+
+/* ---- settings overlay ---- */
+.backdrop {
+    -fx-background-color: rgba(62, 58, 51, 0.35);
+}
+.card {
+    -fx-background-color: -bg;
+    -fx-background-radius: 16;
+    -fx-padding: 24;
+    -fx-spacing: 16;
+    -fx-effect: dropshadow(gaussian, rgba(62,58,51,0.30), 24, 0.1, 0, 6);
+}
+.card-heading {
+    -fx-text-fill: -text;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+.field-label {
+    -fx-text-fill: -text;
+    -fx-font-size: 13px;
+}
+.check-box {
+    -fx-text-fill: -text;
+    -fx-font-size: 13px;
+}
+.check-box > .box {
+    -fx-background-color: -surface;
+    -fx-background-radius: 5;
+    -fx-border-color: -border;
+    -fx-border-radius: 5;
+}
+.check-box:selected > .box {
+    -fx-background-color: -accent;
+}
+.check-box:selected > .box > .mark {
+    -fx-background-color: white;
+}
+
+/* ---- takeover overlay ---- */
+.takeover {
+    -fx-background-color: -bg;
+}
+.takeover-flash {
+    -fx-background-color: -accent-soft;
+}
+.takeover-title {
+    -fx-text-fill: -text;
+    -fx-font-size: 52px;
+    -fx-font-weight: bold;
+}
+.takeover-sub {
+    -fx-text-fill: -text-soft;
+    -fx-font-size: 20px;
+}
+.takeover-button {
+    -fx-font-size: 18px;
+    -fx-padding: 14 40;
+    -fx-background-radius: 14;
+}
